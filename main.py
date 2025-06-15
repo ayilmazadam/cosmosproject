@@ -1,22 +1,18 @@
 from chatgpt_module import generate_script
 from tts_module import text_to_speech
-from image_module import fetch_image
-from video_module import create_video
-from youtube_upload_module import upload_video
+from animation_module import generate_animation_video
+from video_module import add_audio_to_video
 
 def run():
-    konu = input("Video için başlık veya konu gir: ")
     print("Generating script...")
-    script = generate_script(konu)
-    print("Converting to speech...")
+    script = generate_script()
+    print("Creating animation video...")
+    video_path = generate_animation_video(script)
+    print("Generating voiceover...")
     audio_path = text_to_speech(script)
-    print("Fetching image...")
-    image_path = fetch_image(konu)
-    print("Creating video...")
-    video_path = create_video(image_path, audio_path, script)
-    print("Uploading to YouTube...")
-    upload_video(video_path)
-    print("Done.")
+    print("Combining video and audio...")
+    add_audio_to_video(video_path, audio_path)
+    print("Done! Output: output/final_video.mp4")
 
 if __name__ == "__main__":
     run()
