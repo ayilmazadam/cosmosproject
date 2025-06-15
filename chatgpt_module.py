@@ -1,12 +1,14 @@
 import openai
 import os
 
-def generate_script(konu):
+def generate_script():
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    prompt = f"Create a dramatic, viral and catchy short video script in English about: {konu}. Use an engaging narration, keep it under 90 seconds. Make sure it feels intense, like a true crime or big secret reveal."
+    prompt = "Write a 4-sentence fun fact script for a viral educational animation video for YouTube Shorts. Make it punchy, interesting, and visually descriptive."
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # istersen 4o da yazabilirsin, gpt-4o için.
+        model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}]
     )
-    script = response['choices'][0]['message']['content']
-    return script
+    script_text = response.choices[0].message['content']
+    # Scripti cümle cümle böl
+    sentences = [s.strip() for s in script_text.split('.') if s.strip()]
+    return sentences
