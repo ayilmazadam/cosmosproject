@@ -5,12 +5,13 @@ from video_module import create_video
 from youtube_upload_module import upload_video
 
 def run():
+    konu = input("Video için başlık veya konu gir: ")
     print("Generating script...")
-    script = generate_script()
+    script = generate_script(konu)
     print("Converting to speech...")
     audio_path = text_to_speech(script)
     print("Fetching image...")
-    image_path = fetch_image(script)
+    image_path = fetch_image(konu)
     print("Creating video...")
     video_path = create_video(image_path, audio_path, script)
     print("Uploading to YouTube...")
