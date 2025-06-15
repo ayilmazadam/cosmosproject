@@ -1,9 +1,9 @@
 from gtts import gTTS
 import os
 
-def text_to_speech(script, lang="en"):
-    os.makedirs("voices", exist_ok=True)
-    output_path = "voices/output.mp3"
-    tts = gTTS(text=script, lang=lang)
-    tts.save(output_path)
-    return output_path
+def text_to_speech(sentences, filename="output/voice.mp3"):
+    os.makedirs("output", exist_ok=True)
+    text = ". ".join(sentences)
+    tts = gTTS(text=text, lang="en")
+    tts.save(filename)
+    return filename
