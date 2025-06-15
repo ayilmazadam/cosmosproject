@@ -3,6 +3,7 @@ requests
 Pillow
 gtts
 moviepy
+numpy
 google-auth
 google-auth-oauthlib
-google-api-python-client
+google-api-python-clientopenai
